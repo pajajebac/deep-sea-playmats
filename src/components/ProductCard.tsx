@@ -39,18 +39,27 @@ export const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: Math.min(index * 0.08, 0.4) }}
     >
       <Link
         to={`/product/${node.handle}`}
-        className="group block relative overflow-hidden bg-card border border-border hover:border-primary/50 transition-all duration-500 wanted-border"
+        className="group block relative overflow-hidden bg-card wanted-border transition-all duration-500"
       >
-        {/* "WANTED" ribbon */}
-        <div className="absolute top-3 left-0 z-10 bg-accent text-accent-foreground font-display text-[10px] tracking-[0.2em] uppercase px-3 py-1 shadow-lg">
-          WANTED
+        {/* WANTED ribbon */}
+        <div className="absolute top-0 left-0 z-10">
+          <div className="bg-accent text-accent-foreground font-display text-[9px] tracking-[0.25em] uppercase px-3 py-1 shadow-lg">
+            WANTED
+          </div>
+        </div>
+
+        {/* Bounty corner */}
+        <div className="absolute top-0 right-0 z-10 bg-background/80 backdrop-blur-sm px-2 py-1">
+          <span className="font-pirate text-sm text-primary">
+            {price.currencyCode} {parseFloat(price.amount).toFixed(2)}
+          </span>
         </div>
 
         <div className="aspect-[4/3] overflow-hidden bg-secondary relative">
@@ -58,41 +67,43 @@ export const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
             <img
               src={image.url}
               alt={image.altText || node.title}
-              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center text-muted-foreground font-body">
               No image
             </div>
           )}
-          {/* Dark vignette */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        </div>
+          {/* Hover overlay with glow */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-        <div className="p-4 space-y-3 relative">
-          <h3 className="font-display text-sm font-bold tracking-wider text-foreground line-clamp-2 uppercase">
-            {node.title}
-          </h3>
-
-          <div className="flex items-center justify-between">
-            <div>
-              <span className="font-pirate text-2xl text-primary drop-shadow-[0_0_6px_hsla(40,90%,50%,0.3)]">
-                {price.currencyCode} {parseFloat(price.amount).toFixed(2)}
-              </span>
-            </div>
+          {/* Add to cart button that appears on hover */}
+          <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
             <Button
               size="sm"
               onClick={handleAddToCart}
               disabled={isLoading || !variant?.availableForSale}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 border border-gold-dark"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 treasure-glow"
             >
               {isLoading ? (
                 <Loader2 className="h-4 w-4 animate-spin" />
               ) : (
-                <ShoppingCart className="h-4 w-4" />
+                <>
+                  <ShoppingCart className="h-4 w-4 mr-1" />
+                  <span className="text-xs tracking-wider">CLAIM</span>
+                </>
               )}
             </Button>
           </div>
+        </div>
+
+        <div className="p-4 relative">
+          {/* Gold line accent */}
+          <div className="absolute top-0 left-4 right-4 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+
+          <h3 className="font-display text-xs font-bold tracking-[0.15em] text-foreground line-clamp-2 uppercase mt-1 group-hover:text-primary transition-colors duration-300">
+            {node.title}
+          </h3>
         </div>
       </Link>
     </motion.div>
