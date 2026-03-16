@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         display: ['Cinzel', 'serif'],
         body: ['Crimson Text', 'serif'],
+        pirate: ['Pirata One', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -54,11 +55,20 @@ export default {
         gold: {
           DEFAULT: "hsl(var(--gold))",
           light: "hsl(var(--gold-light))",
+          dark: "hsl(var(--gold-dark))",
+        },
+        blood: {
+          DEFAULT: "hsl(var(--blood))",
+          dark: "hsl(var(--blood-dark))",
         },
         ocean: {
           deep: "hsl(var(--ocean-deep))",
           mid: "hsl(var(--ocean-mid))",
           glow: "hsl(var(--ocean-glow))",
+        },
+        parchment: {
+          DEFAULT: "hsl(var(--parchment))",
+          dark: "hsl(var(--parchment-dark))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -78,20 +88,12 @@ export default {
       },
       keyframes: {
         "accordion-down": {
-          from: {
-            height: "0",
-          },
-          to: {
-            height: "var(--radix-accordion-content-height)",
-          },
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
         },
         "accordion-up": {
-          from: {
-            height: "var(--radix-accordion-content-height)",
-          },
-          to: {
-            height: "0",
-          },
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
         },
       },
       animation: {
