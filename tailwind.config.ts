@@ -70,6 +70,10 @@ export default {
           DEFAULT: "hsl(var(--parchment))",
           dark: "hsl(var(--parchment-dark))",
         },
+        mystic: {
+          DEFAULT: "hsl(var(--mystic))",
+          glow: "hsl(var(--mystic-glow))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
