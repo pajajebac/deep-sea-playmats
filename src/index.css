@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Pirata+One&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,53 +6,59 @@
 
 @layer base {
   :root {
-    --background: 220 25% 6%;
-    --foreground: 45 20% 90%;
+    --background: 220 30% 5%;
+    --foreground: 40 30% 88%;
 
-    --card: 220 20% 10%;
-    --card-foreground: 45 20% 90%;
+    --card: 220 25% 8%;
+    --card-foreground: 40 30% 88%;
 
-    --popover: 220 20% 10%;
-    --popover-foreground: 45 20% 90%;
+    --popover: 220 25% 8%;
+    --popover-foreground: 40 30% 88%;
 
-    --primary: 43 80% 55%;
-    --primary-foreground: 220 25% 6%;
+    --primary: 40 90% 50%;
+    --primary-foreground: 220 30% 5%;
 
-    --secondary: 210 30% 15%;
-    --secondary-foreground: 45 20% 90%;
+    --secondary: 210 35% 12%;
+    --secondary-foreground: 40 30% 88%;
 
-    --muted: 215 20% 14%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 215 25% 12%;
+    --muted-foreground: 215 15% 50%;
 
-    --accent: 200 60% 35%;
-    --accent-foreground: 45 20% 95%;
+    --accent: 0 75% 45%;
+    --accent-foreground: 40 30% 95%;
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 45 20% 95%;
+    --destructive-foreground: 40 30% 95%;
 
-    --border: 215 20% 18%;
-    --input: 215 20% 18%;
-    --ring: 43 80% 55%;
+    --border: 215 25% 15%;
+    --input: 215 25% 15%;
+    --ring: 40 90% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 220 20% 8%;
-    --sidebar-foreground: 45 20% 90%;
-    --sidebar-primary: 43 80% 55%;
-    --sidebar-primary-foreground: 220 25% 6%;
-    --sidebar-accent: 210 30% 15%;
-    --sidebar-accent-foreground: 45 20% 90%;
-    --sidebar-border: 215 20% 18%;
-    --sidebar-ring: 43 80% 55%;
+    --sidebar-background: 220 25% 6%;
+    --sidebar-foreground: 40 30% 88%;
+    --sidebar-primary: 40 90% 50%;
+    --sidebar-primary-foreground: 220 30% 5%;
+    --sidebar-accent: 210 35% 12%;
+    --sidebar-accent-foreground: 40 30% 88%;
+    --sidebar-border: 215 25% 15%;
+    --sidebar-ring: 40 90% 50%;
 
-    --gold: 43 80% 55%;
-    --gold-light: 43 70% 70%;
-    --ocean-deep: 210 60% 12%;
-    --ocean-mid: 200 50% 20%;
-    --ocean-glow: 200 80% 45%;
+    --gold: 40 90% 50%;
+    --gold-light: 43 80% 65%;
+    --gold-dark: 35 100% 35%;
+    --blood: 0 75% 45%;
+    --blood-dark: 0 80% 25%;
+    --ocean-deep: 210 60% 8%;
+    --ocean-mid: 200 50% 18%;
+    --ocean-glow: 195 90% 40%;
+    --parchment: 38 60% 75%;
+    --parchment-dark: 30 50% 25%;
 
     --font-display: 'Cinzel', serif;
     --font-body: 'Crimson Text', serif;
+    --font-pirate: 'Pirata One', cursive;
   }
 }
 
@@ -72,23 +78,85 @@
 }
 
 @layer utilities {
+  .font-pirate {
+    font-family: var(--font-pirate);
+  }
+
   .text-gold-gradient {
-    background: linear-gradient(135deg, hsl(43 80% 55%), hsl(43 70% 70%));
+    background: linear-gradient(135deg, hsl(40 90% 50%), hsl(43 80% 65%), hsl(40 90% 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-blood-gradient {
+    background: linear-gradient(135deg, hsl(0 75% 45%), hsl(0 80% 60%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .bg-ocean-gradient {
-    background: linear-gradient(180deg, hsl(220 25% 6%) 0%, hsl(210 60% 12%) 50%, hsl(220 25% 6%) 100%);
+    background: linear-gradient(180deg, hsl(220 30% 5%) 0%, hsl(210 60% 8%) 30%, hsl(200 50% 18%) 60%, hsl(220 30% 5%) 100%);
   }
 
   .hero-overlay {
-    background: linear-gradient(180deg, 
-      hsla(220, 25%, 6%, 0.3) 0%, 
-      hsla(220, 25%, 6%, 0.6) 40%,
-      hsla(220, 25%, 6%, 0.85) 70%,
-      hsl(220, 25%, 6%) 100%
+    background: linear-gradient(180deg,
+      hsla(220, 30%, 5%, 0.1) 0%,
+      hsla(220, 30%, 5%, 0.4) 30%,
+      hsla(220, 30%, 5%, 0.75) 60%,
+      hsl(220, 30%, 5%) 100%
     );
+  }
+
+  .wanted-border {
+    border: 3px solid hsl(var(--gold));
+    box-shadow:
+      inset 0 0 30px hsla(40, 90%, 50%, 0.1),
+      0 0 20px hsla(40, 90%, 50%, 0.15),
+      0 0 60px hsla(40, 90%, 50%, 0.05);
+  }
+
+  .treasure-glow {
+    box-shadow:
+      0 0 30px hsla(40, 90%, 50%, 0.2),
+      0 0 60px hsla(40, 90%, 50%, 0.1),
+      0 4px 20px hsla(0, 0%, 0%, 0.5);
+  }
+
+  .wave-divider {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z' fill='hsl(195 90%25 40%25 / 0.15)'/%3E%3Cpath d='M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z' fill='hsl(195 90%25 40%25 / 0.08)'/%3E%3C/svg%3E");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  @keyframes ocean-sway {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-5px) rotate(0.5deg); }
+    75% { transform: translateY(5px) rotate(-0.5deg); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes wanted-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.95; }
+    75% { opacity: 1; }
+    85% { opacity: 0.97; }
+  }
+
+  .animate-ocean-sway {
+    animation: ocean-sway 6s ease-in-out infinite;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-wanted-flicker {
+    animation: wanted-flicker 3s ease-in-out infinite;
   }
 }
